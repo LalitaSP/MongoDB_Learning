@@ -468,6 +468,38 @@ C.	 Change Destination
        flightdb> db.flights.deleteOne({ id: 3 });
           b)	Delete Many: deletes all records whose source is “Mumbai”.
          flightdb> db.flights.deleteMany({ source: "Mumbai" });
+=============================================================================
+
+11. How to delete collection in MongoDB?
+    To delete a collection in MongoDB, you use the drop() method in mongosh
+
+   flightdb> db.flights.drop()
+=============================================================================
+12. How to delete database from mongo shell?
+To delete a database in MongoDB, use the db.dropDatabase() command in the mongosh shell after switching to the target database with the use command. This action permanently removes the database along with all its collections and documents and cannot be undone, so exercise caution.
+Steps to Delete a Database via mongosh
+1.	Open your terminal or command prompt and connect to your MongoDB instance by typing mongosh.
+2.	List existing databases to ensure you know the exact name of the one you want to delete:
+show dbs
+(or show databases).
+3.	Switch to the target database using the use <database_name> command. For example, to delete a database named userDB:
+use userDB
+The shell will confirm that you have switched to the specified database.
+4.	Execute the drop command:
+db.dropDatabase()
+MongoDB will return a confirmation message upon successful deletion, for example: {"dropped": "userDB", "ok": 1}.
+5.	Verify the deletion by listing the databases again:
+show dbs
+The deleted database will no longer appear in the list. 
+Stack Overflow +4
+Important Considerations
+•	Irreversible Operation: Deleting a database is a permanent operation. Always ensure you have a backup of any data you might need in the future.
+•	Current Database: The db.dropDatabase() command drops the currently selected database. Using the use command beforehand is crucial to avoid accidentally deleting the wrong database (or the default test database if none is selected).
+•	Permissions: You must have the necessary administrative privileges to drop a database.
+•	Other Methods: Databases can also be dropped using client drivers (e.g., Python's drop_database() method) or the MongoDB Compass GUI, which offers a "trash can" icon for deletion
 ===========================================
-10. Exit from mongo shell :
-	flightdb>Exit
+
+12. How to exit from mongo shell :
+	
+    flightdb>Exit
+========================================================================
